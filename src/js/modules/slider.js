@@ -5,9 +5,18 @@ var d3 = Object.assign(
     require('d3-selection')
 )
 
+var sliderValue = 50000;
+
 module.exports =  {
     init: function() {
-       this.createSlider();
+        this.bindings();
+        this.createSlider();
+    },
+
+    bindings: function() {
+        $(window).resize(function() {
+            this.createSlider();
+        }.bind(this));
     },
 
     createSlider: function() {
@@ -15,12 +24,14 @@ module.exports =  {
         var min = 1000;
         var max = 100000;
 
+        $('.uit-slider svg').remove();
+
         var slider = d3.select('.uit-slider')
             .append('svg')
             .attr('height', 400)
             .attr('width', width)
             .append('g')
-            .attr('transform', 'translate(0, 220)');
+            .attr('transform', 'translate(0, 190)');
 
         slider.append('line')
             .attr('class', 'uit-slider__rules')
@@ -46,7 +57,7 @@ module.exports =  {
             .attr('class', 'uit-slider__range uit-slider__range--end')
             .attr('y', 30)
             .attr('x', width)
-            .text(max.toLocaleString() + ' jobs');
+            .text(max.toLocaleString());
 
         slider.call(
             d3.sliderHorizontal()
@@ -54,10 +65,11 @@ module.exports =  {
                 .max(max)
                 .width(width)
                 .ticks(40)
-                .default(50000)
+                .default(sliderValue)
                 .on('onchange', function(val) {
                     d3.select('.uit-slider__number--created').text(Math.round(val).toLocaleString());
                     d3.select('.uit-slider__number--cost').text(this.costPerJob(val));
+                    sliderValue = val;
                 }.bind(this))
             );
 
@@ -84,7 +96,7 @@ module.exports =  {
         nub.append('text')
             .attr('class', 'uit-slider__number uit-slider__number--created')
             .attr('y', -107)
-            .text('50,000')
+            .text(Math.round(sliderValue).toLocaleString())
 
         nub.append('text')
             .attr('class', 'uit-slider__label uit-slider__label--created')
@@ -99,7 +111,7 @@ module.exports =  {
         nub.append('text')
             .attr('class', 'uit-slider__number uit-slider__number--cost')
             .attr('y', -45)
-            .text('$80k')
+            .text(this.costPerJob(sliderValue))
     },
 
     costPerJob: function(val) {
