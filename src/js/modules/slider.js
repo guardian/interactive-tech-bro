@@ -11,23 +11,103 @@ module.exports =  {
     },
 
     createSlider: function() {
+        var width = $('.uit-slider').width();
+        var min = 1000;
+        var max = 100000;
+
         var slider = d3.select('.uit-slider')
             .append('svg')
-            .attr('height', 200)
-            .attr('width', 500)
+            .attr('height', 400)
+            .attr('width', width)
             .append('g')
-            .attr('transform', 'translate(30, 30)');
+            .attr('transform', 'translate(0, 220)');
+
+        slider.append('line')
+            .attr('class', 'uit-slider__rules')
+            .attr('x1', 1)
+            .attr('x2', 1)
+            .attr('y1', -10)
+            .attr('y2', 10);
+
+        slider.append('line')
+            .attr('class', 'uit-slider__rules')
+            .attr('x1', width - 1)
+            .attr('x2', width - 1)
+            .attr('y1', -10)
+            .attr('y2', 10);
+
+        slider.append('text')
+            .attr('class', 'uit-slider__range uit-slider__range--start')
+            .attr('y', 30)
+            .attr('x', 0)
+            .text(min.toLocaleString() + ' jobs');
+
+        slider.append('text')
+            .attr('class', 'uit-slider__range uit-slider__range--end')
+            .attr('y', 30)
+            .attr('x', width)
+            .text(max.toLocaleString() + ' jobs');
 
         slider.call(
             d3.sliderHorizontal()
-                .min(1000)
-                .max(100000)
-                .width(300)
-                .ticks(0)
-                .displayValue(true)
+                .min(min)
+                .max(max)
+                .width(width)
+                .ticks(40)
+                .default(50000)
                 .on('onchange', function(val) {
-                    
-                })
+                    d3.select('.uit-slider__number--created').text(Math.round(val).toLocaleString());
+                    d3.select('.uit-slider__number--cost').text(this.costPerJob(val));
+                }.bind(this))
             );
+
+        var nub = slider.select('.parameter-value');
+
+        nub.select('path')
+            .remove();
+
+        nub.select('text')
+            .remove();
+
+        nub.append('ellipse')
+            .attr('class', 'uit-slider__nub-circle')
+            .attr('cx', 0)
+            .attr('cy', -100)
+            .attr('rx', 80)
+            .attr('ry', 80);
+
+        nub.append('polygon')
+            .attr('class', 'uit-slider__triangle')
+            .attr('points', '-20,-40 20,-40 0,-8')
+
+        // this is appended first because simple-slider looks for the first text element
+        nub.append('text')
+            .attr('class', 'uit-slider__number uit-slider__number--created')
+            .attr('y', -107)
+            .text('50,000')
+
+        nub.append('text')
+            .attr('class', 'uit-slider__label uit-slider__label--created')
+            .attr('y', -140)
+            .text('Jobs created')
+
+        nub.append('text')
+            .attr('class', 'uit-slider__label uit-slider__label--cost')
+            .attr('y', -78)
+            .text('Cost per job')
+
+        nub.append('text')
+            .attr('class', 'uit-slider__number uit-slider__number--cost')
+            .attr('y', -45)
+            .text('$80k')
+    },
+
+    costPerJob: function(val) {
+        var foxconnCost = 4031400000;
+        var perJobInThousands = (foxconnCost / val) / 1000;
+        var perJob = 50 > perJobInThousands ? perJobInThousands.toFixed(1) : Math.round(perJobInThousands);
+        var money = '$' + perJob + 'k';
+
+        return money;
     }
 };

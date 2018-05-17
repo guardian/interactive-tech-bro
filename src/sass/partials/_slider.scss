@@ -1,0 +1,60 @@
+.uit-slider {
+    width: 100%;
+
+    .track-inset {
+        display: none;
+    }
+
+    .track,
+    .uit-slider__rules {
+        stroke: $c-black;
+        stroke-width: 1;
+    }
+
+    .axis {
+        transform: translate(0, -4px);
+
+        line {
+            stroke: $c-rules;
+        }
+
+        text {
+            display: none;
+        }
+    }
+
+    .uit-slider__nub-circle {
+        fill: $c-white;
+    }
+
+    .uit-slider__triangle {
+        fill: $c-white;
+    }
+
+    .uit-slider__range--start {
+        text-anchor: start;
+    }
+
+    .uit-slider__range--end {
+        text-anchor: end;
+    }
+
+    .uit-slider__label,
+    .uit-slider__range {
+        fill: $c-black;
+        font-size: 16px;
+        font-family: 'Guardian Sans Web';
+    }
+
+    .uit-slider__number {
+        fill: $c-black;
+        font-size: 32px;
+        font-family: 'Guardian Figures';
+    }
+
+    .uit-slider__number--cost,
+    .uit-slider__label--cost {
+        fill: $c-light-red;
+    }
+}
+
