@@ -126,10 +126,19 @@ module.exports =  {
     costPerJob: function(val) {
         var foxconnCost = 4031400000;
         var perJobInThousands = (foxconnCost / val) / 1000;
-        var perJob = 50 > perJobInThousands ? perJobInThousands.toFixed(1) : Math.round(perJobInThousands);
-        var money = '$' + perJob + 'k';
+        var perJob;
+        var suffix = 'k'
 
-        return money;
+        if (50 > perJobInThousands) {
+            perJob = perJobInThousands.toFixed(1)
+        } else if (perJobInThousands > 1000) {
+            perJob = (perJobInThousands / 1000).toFixed(1);
+            suffix = 'm';
+        } else {
+            perJob = Math.round(perJobInThousands);
+        }
+
+        return '$' + perJob + suffix;
     },
 
     submitAnswer: function() {

@@ -1,5 +1,9 @@
 .uit-slider {
-    width: 100%;
+    margin: 0 40px;
+
+    @include mq(desktop) {
+        margin: 0;
+    }
 
     svg {
         overflow: visible;
