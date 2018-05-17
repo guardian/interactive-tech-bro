@@ -52,6 +52,12 @@
     }
 }
 
+.uit-header__image {
+    display: block;
+    max-width: 320px;
+    margin: 5% auto;
+}
+
 .uit-header__meta {
     display: flex;
     justify-content: space-between;
