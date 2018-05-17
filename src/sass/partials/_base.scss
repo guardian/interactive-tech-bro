@@ -1,5 +1,6 @@
 .uit {
     overflow: hidden;
+    background-color: $c-background;
 }
 
 .uit-container {
@@ -49,7 +50,7 @@
             bottom: 0;
             left: -10px;
             width: 1px;
-            background-color: $c-light-grey;
+            background-color: $c-rules;
         }
     }
 }

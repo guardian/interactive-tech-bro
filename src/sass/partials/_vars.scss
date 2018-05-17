@@ -33,3 +33,7 @@ $c-light-brown: #eacca0;
 $c-purple: #bb3b80;
 $c-dark-purple: #7d0068;
 $c-light-purple: #ffabdb;
+
+// extras
+$c-background: #fff1f1;
+$c-rules: mix($c-black, $c-background, 10%);

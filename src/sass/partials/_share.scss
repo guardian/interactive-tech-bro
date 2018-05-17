@@ -11,10 +11,10 @@
     border-radius: 20px;
     float: left;
     margin-right: 4px;
-    border: 1px solid $c-red;
+    background-color: $c-light-red;
 
     .uit-icon {
-        fill: $c-red;
+        fill: $c-white;
         width: 100%;
         height: 100%;
         margin: auto;

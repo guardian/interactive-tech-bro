@@ -1,8 +1,8 @@
 .uit-body {
     .uit-drop {
-        @include dropCap(4);
+        @include dropCap(3);
         font-weight: bold;
-        color: $c-red;
+        color: $c-black;
     }
 
     p {
