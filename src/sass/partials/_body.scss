@@ -15,8 +15,14 @@
     }
 
     .uit-subhead {
-        @include banding($c-yellow);
-        font-size: 28px;
+        font-family: 'Guardian Egyptian Web';
+        color: $c-light-red;
+        font-size: 20px;
+        line-height: 1.1;
         font-weight: bold;
+
+        @include mq(tablet) {
+            font-size: 26px;
+        }
     }
 }
