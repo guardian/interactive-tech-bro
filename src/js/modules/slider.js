@@ -135,7 +135,7 @@ module.exports =  {
     submitAnswer: function() {
         var answer = parseInt($('.parameter-value').attr('val'));
 
-        fetch('http://localhost:3000/projects/tech-bro-slider/', {
+        fetch('https://interactive.guardianapis.com/projects/tech-bro-slider/', {
             method: 'post',
             mode: 'no-cors',
             headers: {
