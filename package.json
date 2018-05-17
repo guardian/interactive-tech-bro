@@ -46,6 +46,7 @@
     "stevedore": "^0.1.4",
     "stringify": "^5.1.0",
     "sync-request": "^3.0.1",
+    "unfetch": "^3.0.0",
     "user-home": "^2.0.0"
   }
 }

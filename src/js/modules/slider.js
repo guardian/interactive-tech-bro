@@ -1,3 +1,5 @@
+var fetch = require('unfetch');
+
 var d3 = Object.assign(
     {},
     require('d3-array'),
@@ -16,6 +18,11 @@ module.exports =  {
     bindings: function() {
         $(window).resize(function() {
             this.createSlider();
+        }.bind(this));
+
+        $('.uit-slider__button').click(function() {
+            this.submitAnswer();
+            this.getResults();
         }.bind(this));
     },
 
@@ -69,11 +76,13 @@ module.exports =  {
                 .on('onchange', function(val) {
                     d3.select('.uit-slider__number--created').text(Math.round(val).toLocaleString());
                     d3.select('.uit-slider__number--cost').text(this.costPerJob(val));
-                    sliderValue = val;
+                    d3.select('.parameter-value').attr('val', Math.round(val));
+                    sliderValue = Math.round(val);
                 }.bind(this))
             );
 
-        var nub = slider.select('.parameter-value');
+        var nub = slider.select('.parameter-value')
+            .attr('val', Math.round(sliderValue));
 
         nub.select('path')
             .remove();
@@ -121,5 +130,29 @@ module.exports =  {
         var money = '$' + perJob + 'k';
 
         return money;
+    },
+
+    submitAnswer: function() {
+        var answer = parseInt($('.parameter-value').attr('val'));
+
+        fetch('http://localhost:3000/projects/tech-bro-slider/', {
+            method: 'post',
+            mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'applicantion/json'
+            },
+            body : JSON.stringify(answer)
+        });
+    },
+
+    getResults: function() {
+        return fetch('https://interactive.guim.co.uk/quiz-server/test/tech-bro-slider.json')
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
+            $('.uit-slider__response--answer').text(data.toLocaleString());
+        })
     }
 };
