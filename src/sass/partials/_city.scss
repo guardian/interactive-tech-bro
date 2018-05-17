@@ -1,0 +1,59 @@
+.uit-city {
+    position: relative;
+}
+
+.uit-city__image {
+    width: 100%;
+    padding-top: 150px;
+    margin: 6px 0 12px;
+}
+
+.uit-city__bubble {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: $c-white;
+    width: 160px;
+    height: 160px;
+    border-radius: 80px;
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        right: 0;
+        height: 0;
+        width: 0;
+        margin: auto;
+        border-top: 20px solid $c-white;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+    }
+}
+
+.uit-city__bubble-content {
+    text-align: center;
+    padding-top: 18px;
+}
+
+.uit-city__label {
+    color: $c-black;
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Guardian Sans Web';
+    padding: 3px 0;
+}
+
+.uit-city__number {
+    color: $c-black;
+    font-size: 32px;
+    font-family: 'Guardian Figures';
+}
+
+.uit-city__number--cost,
+.uit-city__label--cost {
+    color: $c-light-red;
+}
