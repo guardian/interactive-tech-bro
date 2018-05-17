@@ -28,7 +28,7 @@ module.exports =  {
 
         var slider = d3.select('.uit-slider')
             .append('svg')
-            .attr('height', 400)
+            .attr('height', 240)
             .attr('width', width)
             .append('g')
             .attr('transform', 'translate(0, 190)');
