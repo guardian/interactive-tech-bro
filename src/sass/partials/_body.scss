@@ -1,4 +1,8 @@
 .uit-body {
+    .uit-content {
+        padding-top: 8px;
+    }
+
     .uit-drop {
         @include dropCap(3);
         font-weight: bold;

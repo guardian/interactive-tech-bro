@@ -2,7 +2,7 @@
     overflow: hidden;
 
     .uit-content {
-        padding-bottom: 8px;
+        border-bottom: 1px solid $c-rules;
     }
 }
 
@@ -15,7 +15,11 @@
     height: 0;
     border-radius: 60%;
     background-color: $c-light-red;
-    margin-bottom: 20%;
+    margin-bottom: 24%;
+
+    @include mq(tablet) {
+        margin-top: -73%;
+    }
 
     &:after {
         content: '';
@@ -48,20 +52,22 @@
     color: $c-white;
 
     @include mq(tablet) {
-        font-size: 83px;
+        font-size: 85px;
+        line-height: 1;
     }
 }
 
 .uit-header__image {
     display: block;
     max-width: 320px;
-    margin: 5% auto;
+    margin: 0 auto 5%;
 }
 
 .uit-header__meta {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid $c-rules;
+    align-items: center;
+    margin-bottom: 6px;
 }
 
 .uit-header__byline {
@@ -69,7 +75,8 @@
     font-family: 'Guardian Egyptian Web';
     font-style: italic;
     font-size: 18px;
-    padding-top: 2px;
+    line-height: 1;
+    margin: 0;
 }
 
 .uit-header__byline-link {
