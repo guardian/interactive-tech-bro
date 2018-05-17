@@ -1,6 +1,12 @@
 .uit-slider {
     width: 100%;
 
+    svg {
+        overflow: visible;
+        position: relative;
+        z-index: 10;
+    }
+
     .track-inset {
         display: none;
     }

@@ -45,12 +45,18 @@
     font-weight: normal;
     font-family: 'Guardian Sans Web';
     padding: 3px 0;
+    margin: 0;
 }
 
 .uit-city__number {
     color: $c-black;
     font-size: 32px;
     font-family: 'Guardian Figures';
+    margin: 0;
+}
+
+.uit-city__number--jobs {
+    margin-bottom: 6px;
 }
 
 .uit-city__number--cost,
