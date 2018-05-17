@@ -9,6 +9,7 @@
         overflow: visible;
         position: relative;
         z-index: 10;
+        shape-rendering: crispedges;
     }
 
     .track-inset {
@@ -22,7 +23,7 @@
     }
 
     .axis {
-        transform: translate(0, -4px);
+        transform: translate(0, -6px);
 
         line {
             stroke: $c-rules;

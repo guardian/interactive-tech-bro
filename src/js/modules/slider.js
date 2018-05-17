@@ -40,6 +40,27 @@ module.exports =  {
             .append('g')
             .attr('transform', 'translate(0, 190)');
 
+        // create slider
+        slider.call(
+            d3.sliderHorizontal()
+                .min(min)
+                .max(max)
+                .width(width)
+                .ticks(100)
+                .default(sliderValue)
+                .on('onchange', function(val) {
+                    d3.select('.uit-slider__number--created').text(Math.round(val).toLocaleString());
+                    d3.select('.uit-slider__number--cost').text(this.costPerJob(val));
+                    d3.select('.parameter-value').attr('val', Math.round(val));
+                    sliderValue = Math.round(val);
+                }.bind(this))
+            );
+
+        // double height of ticks
+        slider.selectAll('.axis .tick line')
+            .attr('y2', 12);
+
+        // add start and end lines
         slider.append('line')
             .attr('class', 'uit-slider__rules')
             .attr('x1', 1)
@@ -49,11 +70,12 @@ module.exports =  {
 
         slider.append('line')
             .attr('class', 'uit-slider__rules')
-            .attr('x1', width - 1)
-            .attr('x2', width - 1)
+            .attr('x1', width)
+            .attr('x2', width)
             .attr('y1', -10)
             .attr('y2', 10);
 
+        // add range text
         slider.append('text')
             .attr('class', 'uit-slider__range uit-slider__range--start')
             .attr('y', 30)
@@ -66,21 +88,7 @@ module.exports =  {
             .attr('x', width)
             .text(max.toLocaleString());
 
-        slider.call(
-            d3.sliderHorizontal()
-                .min(min)
-                .max(max)
-                .width(width)
-                .ticks(40)
-                .default(sliderValue)
-                .on('onchange', function(val) {
-                    d3.select('.uit-slider__number--created').text(Math.round(val).toLocaleString());
-                    d3.select('.uit-slider__number--cost').text(this.costPerJob(val));
-                    d3.select('.parameter-value').attr('val', Math.round(val));
-                    sliderValue = Math.round(val);
-                }.bind(this))
-            );
-
+        // style the actual slider nub
         var nub = slider.select('.parameter-value')
             .attr('val', Math.round(sliderValue));
 
