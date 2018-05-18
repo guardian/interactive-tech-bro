@@ -1,4 +1,5 @@
 .uit-slider {
+    position: relative;
     margin-bottom: 6px;
     padding-bottom: 12px;
     border-bottom: 1px solid $c-rules;
@@ -99,7 +100,9 @@
 }
 
 .uit-slider__button {
-    position: relative;
+    position: absolute;
+    z-index: 15;
+    bottom: 6px;
     font-family: 'Guardian Sans Web';
     font-size: 16px;
     border-radius: 32px;
@@ -145,12 +148,7 @@
     }
 
     .uit-slider__button {
-        color: $c-grey;
-        background-color: $c-black;
-
-        svg {
-            fill: $c-grey;
-        }
+        opacity: 0;
     }
 
     .uit-slider__range {
