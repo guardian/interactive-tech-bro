@@ -8,6 +8,9 @@ var d3 = Object.assign(
 )
 
 var sliderValue = 50000;
+var min = 1000;
+var max = 100000;
+var width;
 
 module.exports =  {
     init: function() {
@@ -27,17 +30,16 @@ module.exports =  {
     },
 
     createSlider: function() {
-        var width = $('.uit-slider').width();
-        var min = 1000;
-        var max = 100000;
+        width = $('.uit-slider__svg').width();
 
-        $('.uit-slider svg').remove();
+        $('.uit-slider__svg svg').remove();
 
-        var slider = d3.select('.uit-slider')
+        var slider = d3.select('.uit-slider__svg')
             .append('svg')
-            .attr('height', 240)
+            .attr('height', 270)
             .attr('width', width)
             .append('g')
+            .attr('class', 'uit-slider__slider')
             .attr('transform', 'translate(0, 190)');
 
         // create slider
@@ -129,6 +131,65 @@ module.exports =  {
             .attr('class', 'uit-slider__number uit-slider__number--cost')
             .attr('y', -45)
             .text(this.costPerJob(sliderValue))
+
+        // add in results labels
+        var estimate = slider.append('g')
+            .attr('class', 'uit-slider__estimate');
+
+        estimate.append('polygon')
+            .attr('class', 'uit-slider__estimate-triangle')
+            .attr('points', this.returnTrianglePoints(3000));
+
+        estimate.append('polygon')
+            .attr('class', 'uit-slider__estimate-triangle')
+            .attr('points', this.returnTrianglePoints(15000))
+
+        estimate.append('text')
+            .attr('class', 'uit-slider__estimate-label')
+            .attr('y', 40)
+            .attr('x', this.getSliderPoint(9000))
+            .text('Estimated jobs');
+
+        estimate.append('text')
+            .attr('class', 'uit-slider__estimate-number')
+            .attr('y', 70)
+            .attr('x', this.getSliderPoint(9000))
+            .text('3-15k');
+    },
+
+    appendAverageResponse: function(val) {
+        var response = d3.select('.uit-slider__slider')
+            .append('g')
+            .attr('class', 'uit-slider__average');
+
+        response.append('polygon')
+            .attr('class', 'uit-slider__average-triangle')
+            .attr('points', this.returnTrianglePoints(val));
+
+        response.append('text')
+            .attr('class', 'uit-slider__average-label')
+            .attr('y', 40)
+            .attr('x', this.getSliderPoint(val))
+            .text('Reader average');
+
+        response.append('text')
+            .attr('class', 'uit-slider__average-number')
+            .attr('y', 70)
+            .attr('x', this.getSliderPoint(val))
+            .text(val.toLocaleString());
+    },
+
+    getSliderPoint: function(val) {
+        var percentage = ((val - min) / (max - min)) * 100;
+        var point = (width / 100) * percentage;
+
+        return point;
+    },
+
+    returnTrianglePoints: function(val) {
+        var point = this.getSliderPoint(val);
+
+        return point + ',12 ' + (point - 7) + ',21 ' + (point + 7) + ',21';
     },
 
     costPerJob: function(val) {
@@ -169,7 +230,9 @@ module.exports =  {
             return res.json()
         })
         .then((data) => {
+            $('.uit-slider').addClass('is-answered');
             $('.uit-slider__response--answer').text(data.toLocaleString());
+            this.appendAverageResponse(data);
         })
     }
 };

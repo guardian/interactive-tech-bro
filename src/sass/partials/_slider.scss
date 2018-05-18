@@ -1,15 +1,12 @@
 .uit-slider {
-    margin: 0 40px;
-
-    @include mq(desktop) {
-        margin: 0;
-    }
+    margin-bottom: 6px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $c-rules;
 
     svg {
         overflow: visible;
         position: relative;
         z-index: 10;
-        shape-rendering: crispedges;
     }
 
     .track-inset {
@@ -20,6 +17,7 @@
     .uit-slider__rules {
         stroke: $c-black;
         stroke-width: 1;
+        shape-rendering: crispedges;
     }
 
     .axis {
@@ -27,6 +25,7 @@
 
         line {
             stroke: $c-rules;
+            shape-rendering: crispedges;
         }
 
         text {
@@ -42,6 +41,10 @@
         fill: $c-white;
     }
 
+    .uit-slider__range {
+        transition: opacity 0.3s ease-in;
+    }
+
     .uit-slider__range--start {
         text-anchor: start;
     }
@@ -51,13 +54,17 @@
     }
 
     .uit-slider__label,
-    .uit-slider__range {
+    .uit-slider__range,
+    .uit-slider__estimate-label,
+    .uit-slider__average-label {
         fill: $c-black;
         font-size: 16px;
         font-family: 'Guardian Sans Web';
     }
 
-    .uit-slider__number {
+    .uit-slider__number,
+    .uit-slider__estimate-number,
+    .uit-slider__average-number {
         fill: $c-black;
         font-size: 32px;
         font-family: 'Guardian Figures';
@@ -66,6 +73,28 @@
     .uit-slider__number--cost,
     .uit-slider__label--cost {
         fill: $c-light-red;
+    }
+
+    .uit-slider__estimate,
+    .uit-slider__average {
+        opacity: 0;
+        transition-delay: 0.2s;
+        transition: opacity 0.3s ease-in;
+    }
+
+    .uit-slider__estimate {
+        fill: $c-light-red;
+    }
+
+    .uit-slider__estimate-label,
+    .uit-slider__estimate-number {
+        text-anchor: middle;
+        fill: $c-light-red;
+    }
+
+    .uit-slider__average {
+        fill: $c-black;
+        text-anchor: middle;
     }
 }
 
@@ -92,5 +121,61 @@
         bottom: 0;
         fill: $c-white;
         height: 100%;
+    }
+}
+
+.uit-slider__svg {
+    margin: 0 40px;
+
+    @include mq(desktop) {
+        margin: 0;
+    }
+}
+
+.uit-slider__reveal {
+    background-color: $c-white;
+    padding: 6px;
+    display: none;
+}
+
+.uit-slider.is-answered {
+    .uit-slider__button,
+    .uit-slider__svg {
+        pointer-events: none;
+    }
+
+    .uit-slider__button {
+        color: $c-grey;
+        background-color: $c-black;
+
+        svg {
+            fill: $c-grey;
+        }
+    }
+
+    .uit-slider__range {
+        opacity: 0;
+    }
+
+    .uit-slider__estimate,
+    .uit-slider__average {
+        opacity: 1;
+    }
+
+    .uit-slider__nub-circle {
+        fill: $c-black;
+    }
+
+    .uit-slider__triangle {
+        fill: $c-black;
+    }
+
+    .uit-slider__number--created,
+    .uit-slider__label--created {
+        fill: $c-white;
+    }
+
+    .uit-slider__reveal {
+        display: block;
     }
 }
