@@ -1,5 +1,6 @@
 .uit-slider {
     position: relative;
+    padding-top: 10px;
     margin-bottom: 6px;
     padding-bottom: 12px;
     border-bottom: 1px solid $c-rules;
@@ -54,10 +55,16 @@
         text-anchor: end;
     }
 
+    .uit-slider__drag-message {
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+    }
+
     .uit-slider__label,
     .uit-slider__range,
     .uit-slider__estimate-label,
-    .uit-slider__average-label {
+    .uit-slider__average-label,
+    .uit-slider__drag-message {
         fill: $c-black;
         font-size: 16px;
         font-family: 'Guardian Sans Web';
@@ -83,7 +90,8 @@
         transition: opacity 0.3s ease-in;
     }
 
-    .uit-slider__estimate {
+    .uit-slider__estimate,
+    .uit-slider__drag-message {
         fill: $c-light-red;
     }
 
@@ -142,6 +150,12 @@
 
     & > p {
         display: none;
+    }
+}
+
+.uit-slider.is-untouched {
+    .uit-slider__drag-message {
+        opacity: 1;
     }
 }
 

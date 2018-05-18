@@ -56,6 +56,7 @@ module.exports =  {
                     d3.select('.uit-slider__number--cost').text(this.costPerJob(val));
                     d3.select('.parameter-value').attr('val', Math.round(val));
                     sliderValue = Math.round(val);
+                    $('.uit-slider').removeClass('is-untouched');
                 }.bind(this))
             );
 
@@ -110,28 +111,33 @@ module.exports =  {
 
         nub.append('polygon')
             .attr('class', 'uit-slider__triangle')
-            .attr('points', '-20,-40 20,-40 0,-8')
+            .attr('points', '-20,-40 20,-40 0,-8');
 
         // this is appended first because simple-slider looks for the first text element
         nub.append('text')
             .attr('class', 'uit-slider__number uit-slider__number--created')
             .attr('y', -107)
-            .text(Math.round(sliderValue).toLocaleString())
+            .text(Math.round(sliderValue).toLocaleString());
 
         nub.append('text')
             .attr('class', 'uit-slider__label uit-slider__label--created')
             .attr('y', -140)
-            .text('Jobs created')
+            .text('Jobs created');
 
         nub.append('text')
             .attr('class', 'uit-slider__label uit-slider__label--cost')
             .attr('y', -78)
-            .text('Cost per job')
+            .text('Cost per job');
 
         nub.append('text')
             .attr('class', 'uit-slider__number uit-slider__number--cost')
             .attr('y', -45)
-            .text(this.costPerJob(sliderValue))
+            .text(this.costPerJob(sliderValue));
+
+        nub.append('text')
+            .attr('class', 'uit-slider__drag-message')
+            .attr('y', -188)
+            .text('Drag to answer');
 
         // add in results labels
         var estimate = slider.append('g')
@@ -178,6 +184,10 @@ module.exports =  {
             .attr('y', 70)
             .attr('x', this.getSliderPoint(val))
             .text(val.toLocaleString());
+
+        setTimeout(function() {
+            $('.uit-slider').addClass('is-answered');
+        }, 100);
     },
 
     getSliderPoint: function(val) {
@@ -242,7 +252,6 @@ module.exports =  {
             return res.json()
         })
         .then((data) => {
-            $('.uit-slider').addClass('is-answered');
             this.appendAverageResponse(data);
         })
     }
