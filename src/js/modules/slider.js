@@ -231,7 +231,6 @@ module.exports =  {
         })
         .then((data) => {
             $('.uit-slider').addClass('is-answered');
-            $('.uit-slider__response--answer').text(data.toLocaleString());
             this.appendAverageResponse(data);
         })
     }
