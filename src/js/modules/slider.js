@@ -25,6 +25,7 @@ module.exports =  {
 
         $('.uit-slider__button').click(function() {
             this.submitAnswer();
+            this.revealCopy();
             this.getResults();
         }.bind(this));
     },
@@ -222,6 +223,17 @@ module.exports =  {
             },
             body : JSON.stringify(answer)
         });
+    },
+
+    revealCopy: function() {
+        var val = parseInt($('.parameter-value').attr('val'));
+        if (3000 > val) {
+            $('.uit-slider .below').show();
+        } else if (val > 15000) {
+            $('.uit-slider .above').show();
+        } else {
+            $('.uit-slider .middle').show();
+        }
     },
 
     getResults: function() {

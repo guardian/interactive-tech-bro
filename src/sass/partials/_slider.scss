@@ -35,11 +35,11 @@
     }
 
     .uit-slider__nub-circle {
-        fill: $c-white;
+        fill: $c-light-red;
     }
 
     .uit-slider__triangle {
-        fill: $c-white;
+        fill: $c-light-red;
     }
 
     .uit-slider__range {
@@ -73,7 +73,7 @@
 
     .uit-slider__number--cost,
     .uit-slider__label--cost {
-        fill: $c-light-red;
+        fill: $c-white;
     }
 
     .uit-slider__estimate,
@@ -139,6 +139,10 @@
     background-color: $c-white;
     padding: 6px;
     display: none;
+
+    & > p {
+        display: none;
+    }
 }
 
 .uit-slider.is-answered {
@@ -161,16 +165,16 @@
     }
 
     .uit-slider__nub-circle {
-        fill: $c-black;
+        fill: $c-white;
     }
 
     .uit-slider__triangle {
-        fill: $c-black;
+        fill: $c-white;
     }
 
-    .uit-slider__number--created,
-    .uit-slider__label--created {
-        fill: $c-white;
+    .uit-slider__number--cost,
+    .uit-slider__label--cost {
+        fill: $c-light-red;
     }
 
     .uit-slider__reveal {
