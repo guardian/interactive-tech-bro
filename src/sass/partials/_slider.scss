@@ -35,12 +35,10 @@
         }
     }
 
-    .uit-slider__nub-circle {
-        fill: $c-light-red;
-    }
-
+    .uit-slider__nub-circle,
     .uit-slider__triangle {
         fill: $c-light-red;
+        transition: fill 0.3s ease-in;
     }
 
     .uit-slider__range {
@@ -104,6 +102,13 @@
     .uit-slider__average {
         fill: $c-black;
         text-anchor: middle;
+    }
+
+    .parameter-value:hover {
+        .uit-slider__nub-circle,
+        .uit-slider__triangle {
+            fill: $c-red;
+        }
     }
 }
 
