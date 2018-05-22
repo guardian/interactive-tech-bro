@@ -247,7 +247,7 @@ module.exports =  {
     },
 
     getResults: function() {
-        return fetch('https://interactive.guim.co.uk/quiz-server/test/tech-bro-slider.json')
+        return fetch('https://interactive.guim.co.uk/quiz-server/tech-bro-slider.json')
         .then((res) => {
             return res.json()
         })
