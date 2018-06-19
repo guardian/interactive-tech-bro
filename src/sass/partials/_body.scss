@@ -9,6 +9,16 @@
         color: $c-black;
     }
 
+    a {
+        color: $c-light-red;
+        border-bottom: 1px solid $c-dark-grey;
+
+        &:hover {
+            border-bottom-color: $c-light-red;
+            text-decoration: none;
+        }
+    }
+
     p {
         @include bodyCopy();
         margin-top: 0;
