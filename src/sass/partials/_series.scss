@@ -1,0 +1,69 @@
+.uit-series {
+    position: relative;
+    float: left;
+    width: 50%;
+    max-width: 300px;
+    border-top: 1px solid $c-rules;
+    border-bottom: 1px solid $c-rules;
+    background-color: $c-background;
+    margin-right: 20px;
+
+    @include mq(leftCol) {
+        margin-left: -160px;
+    }
+}
+
+.uit-series__title {
+    font-family: 'Guardian Egyptian Web';
+    font-size: 20px;
+    line-height: 1.2;
+    color: $c-light-red;
+    margin-bottom: 4px;
+    margin-top: 4px;
+
+    @include mq(tablet) {
+        font-size: 26px;
+    }
+}
+
+p.uit-series__description {
+    font-family: 'Guardian Sans Web';
+    font-size: 16px;
+    line-height: 1.3;
+    color: $c-black;
+    margin-bottom: 12px;
+}
+
+a.uit-series__button {
+    position: relative;
+    z-index: 15;
+    font-family: 'Guardian Sans Web';
+    font-size: 16px;
+    border-radius: 32px;
+    padding: 5px 38px 4px 12px;
+    background-color: $c-light-red;
+    display: inline-block;
+    transition: background 0.3s ease-out;
+    margin-bottom: 8px;
+    cursor: pointer;
+    color: $c-white;
+    border-bottom: 0;
+
+    &:hover {
+        background-color: darken($c-light-red, 15%);
+
+        svg {
+            transform: translateX(3px);
+        }
+    }
+
+    svg {
+        position: absolute;
+        top: 0;
+        right: 3px;
+        bottom: 0;
+        fill: $c-white;
+        height: 100%;
+        transition: transform 0.3s ease-out;
+    }
+}
