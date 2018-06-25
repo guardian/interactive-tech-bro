@@ -22,7 +22,7 @@
     }
 
     &:hover {
-        background-color: $c-red;
+        background-color: darken($c-light-red, 15%);
 
         .uit-icon {
             fill: $c-white;

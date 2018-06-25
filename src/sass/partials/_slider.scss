@@ -107,7 +107,7 @@
     .parameter-value:hover {
         .uit-slider__nub-circle,
         .uit-slider__triangle {
-            fill: $c-red;
+            fill: darken($c-light-red, 15%);
         }
     }
 }
@@ -128,7 +128,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $c-red;
+        background-color: darken($c-light-red, 15%);
 
         svg {
             transform: translateX(3px);
