@@ -148,9 +148,11 @@
 
 .uit-slider__svg {
     margin: 0 40px;
+    padding-top: 6px;
 
     @include mq(desktop) {
         margin: 0;
+        padding-top: 14px;
     }
 }
 
