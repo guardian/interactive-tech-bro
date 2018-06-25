@@ -90,3 +90,69 @@
         border-bottom: 1px solid $c-light-red;
     }
 }
+
+.uit-header__asterisk {
+    position: relative;
+    display: inline-block;
+    background-color: $c-light-red;
+    width: 1em;
+    height: 1em;
+    border-radius: .5em;
+    margin-bottom: -1px;
+    margin-right: 2px;
+
+    svg {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        width: calc(100% + 4px);
+        fill: $c-white;
+    }
+}
+
+.uit-header__pop-up {
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $c-light-red;
+    color: $c-white;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    padding: 10px;
+
+    @include mq(mobileLandscape) {
+        padding: 10px 20px;
+    }
+
+    @include mq(desktop) {
+        position: absolute;
+        width: 300px;
+        left: -148px;
+        right: auto;
+        bottom: 40px;
+        padding: 6px;
+    }
+
+    .is-hover & {
+        opacity: 1;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: -18px;
+        left: 0;
+        right: 0;
+        height: 0;
+        width: 0;
+        margin: auto;
+        border-top: 20px solid $c-light-red;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+    }
+}
