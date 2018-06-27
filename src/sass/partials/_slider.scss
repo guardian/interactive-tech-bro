@@ -112,6 +112,15 @@
     }
 }
 
+@keyframes wiggle {
+    0%,100% {
+        transform: rotate(-2deg) translateX(50%);
+    }
+    50% {
+        transform: rotate(2deg) translateX(50%);
+    }
+}
+
 .uit-slider__button {
     position: absolute;
     z-index: 15;
@@ -169,6 +178,11 @@
 .uit-slider.is-untouched {
     .uit-slider__drag-message {
         opacity: 1;
+    }
+
+    .parameter-value {
+        transform-origin: center 0px;
+        animation: wiggle 1.5s ease-in-out infinite;
     }
 }
 
