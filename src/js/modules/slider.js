@@ -204,7 +204,7 @@ module.exports =  {
     },
 
     costPerJob: function(val) {
-        var foxconnCost = 4500000000;
+        var foxconnCost = 4800000000;
         var perJobInThousands = (foxconnCost / val) / 1000;
         var perJob;
         var suffix = 'k'
